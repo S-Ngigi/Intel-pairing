@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from random import shuffle
+
 # Opens a text file with names of all the students
 with open('class.txt') as class_names:
   names = class_names.readlines()
@@ -7,6 +9,9 @@ with open('class.txt') as class_names:
 # Strips the line breaks
 class_list = [name.strip() for name in names]
 # print(class_list)
+
+# Randomize the class_list
+shuffle(class_list)
 
 # Function below converts a flat list into a group of n-length tuples.
 def group(a_list, n):
@@ -31,15 +36,15 @@ def group(a_list, n):
 
 # print(group(class_list, 3), len(class_list))
 
-d = group(class_list, 3)
+d = group(class_list, 2)
 print(d)
 
 
 # Creates and writes the name of pairs
-with open("triplets.txt", "w") as output_file:
+with open("group.txt", "w") as output_file:
   # Iterates through the list and then extracts the names from the tuples. Puts the pair in new lines.
-  output_file.write('\n'.join('{}, {}, {}'.format(
-      x[0], x[1], x[2]) for x in group(class_list, 3)))
+  output_file.write('\n'.join('{}, {}'.format(
+      x[0], x[1]) for x in group(class_list, 2)))
 
 # print(output_file)
 
